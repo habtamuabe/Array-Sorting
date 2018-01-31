@@ -20,6 +20,11 @@ public class ArraySorting {
 		linearSearch(array2, 23);
 		linearSearch(array2, 20);
 
+		// Bubble Sort
+		int[] array3 = { 4, 6, 56, 23, 4, 1, 30, 15, 67, 89, 22 };
+		System.out.println("Unsorted array: " + Arrays.toString(array3));
+		bubbleSort(array3);
+
 	}
 
 	public static void selectionSort(int[] array) {
@@ -53,6 +58,25 @@ public class ArraySorting {
 		}
 
 		System.out.println("The element is not in the array");
+	}
+
+	public static void bubbleSort(int[] array) {
+		int n = array.length;
+		boolean swapped;
+
+		do {
+			swapped = false;
+			for (int i = 0; i < n - 1; i++) {
+				if (array[i] > array[i + 1]) {
+					int temp = array[i];
+					array[i] = array[i + 1];
+					array[i + 1] = temp;
+					swapped = true;
+				}
+			}
+		} while (swapped == true);
+
+		System.out.println("Array after Bubble Sort: " + Arrays.toString(array));
 	}
 
 }
