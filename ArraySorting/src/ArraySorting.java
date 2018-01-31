@@ -21,6 +21,7 @@ public class ArraySorting {
 		linearSearch(array2, 20);
 
 		// Bubble Sort
+		
 		int[] array3 = { 4, 6, 56, 23, 4, 1, 30, 15, 67, 89, 22 };
 		System.out.println("Unsorted array: " + Arrays.toString(array3));
 		bubbleSort(array3);
