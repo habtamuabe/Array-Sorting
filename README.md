@@ -1,4 +1,4 @@
-# Sorting Array
+# Sorting an array in Java
 
 * Arrays.sort()
 * Selection Sort
