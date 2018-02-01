@@ -33,6 +33,11 @@ public class ArraySorting {
 		int[] array5 = mergeSort(array4);
 		System.out.println("Array after Merge Sort: " + Arrays.toString(array5));
 
+		// Binary Search
+		int[] array6 = { 1, 2, 4, 6, 8, 11, 12, 13, 14, 17 };
+		binarySearch(6, array6, 1, 17);
+		binarySearch(10, array6, 1, 17);
+
 	}
 
 	public static void selectionSort(int[] array) {
@@ -151,6 +156,27 @@ public class ArraySorting {
 		}
 
 		return result;
+	}
+
+	public static boolean binarySearch(int value, int[] array, int low, int high) {
+
+		if (low > high) {
+			System.out.println("not found");
+			return false;
+		}
+
+		int middle = (low + high) / 2;
+
+		if (value == array[middle]) {
+			System.out.println("found! It is at " + middle);
+			return true;
+		}
+
+		else if (value > array[middle]) {
+			return binarySearch(value, array, middle + 1, high);
+		} else {
+			return binarySearch(value, array, low, middle - 1);
+		}
 	}
 
 	public static int[] createArray(int n) {
