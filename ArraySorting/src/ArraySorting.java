@@ -32,11 +32,13 @@ public class ArraySorting {
 		System.out.println("Unsorted array: " + Arrays.toString(array4));
 		int[] array5 = mergeSort(array4);
 		System.out.println("Array after Merge Sort: " + Arrays.toString(array5));
+		System.out.println(isSorted(array5));
 
 		// Binary Search
 		int[] array6 = { 1, 2, 4, 6, 8, 11, 12, 13, 14, 17 };
 		binarySearch(6, array6, 1, 17);
 		binarySearch(10, array6, 1, 17);
+		
 
 	}
 
@@ -178,6 +180,12 @@ public class ArraySorting {
 			return binarySearch(value, array, low, middle - 1);
 		}
 	}
+	
+	public static boolean isSorted(int[] array) {
+        for (int i = 1; i < array.length; i++)
+            if (array[i] < array[i-1]) return false;
+        return true;
+    }
 
 	public static int[] createArray(int n) {
 
