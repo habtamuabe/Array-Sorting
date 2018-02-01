@@ -1,29 +1,37 @@
 import java.util.Arrays;
 
+// EDX - Microsoft: DEV285x
+
 public class ArraySorting {
 
 	public static void main(String[] args) {
 
 		// Arrays.sort
-		int[] array = generateArray(8);
+		int[] array = createArray(8);
 		System.out.println("Unsorted array: " + Arrays.toString(array));
 		Arrays.sort(array);
 		System.out.println("Sorted array: " + Arrays.toString(array));
 
 		// Selection Sort
-		int[] array1 = generateArray(10);
+		int[] array1 = createArray(10);
 		System.out.println("Unsorted array: " + Arrays.toString(array1));
 		selectionSort(array1);
 
 		// Linear Search
-		int[] array2 = {4, 6, 56, 23, 4, 1, 30, 15, 67, 89};
+		int[] array2 = { 4, 6, 56, 23, 4, 1, 30, 15, 67, 89 };
 		linearSearch(array2, 23);
 		linearSearch(array2, 20);
 
 		// Bubble Sort
-		int[] array3 = generateArray(10);
+		int[] array3 = createArray(10);
 		System.out.println("Unsorted array: " + Arrays.toString(array3));
 		bubbleSort(array3);
+
+		// Merge Sort
+		int[] array4 = createArray(10);
+		System.out.println("Unsorted array: " + Arrays.toString(array4));
+		int[] array5 = mergeSort(array4);
+		System.out.println("Array after Merge Sort: " + Arrays.toString(array5));
 
 	}
 
@@ -79,7 +87,73 @@ public class ArraySorting {
 		System.out.println("Array after Bubble Sort: " + Arrays.toString(array));
 	}
 
-	public static int[] generateArray(int n) {
+	public static int[] mergeSort(int[] array) {
+		int n = array.length;
+		int[] left;
+		int[] right;
+
+		if (n <= 1) {
+			return array;
+		}
+
+		// create space for left and right arrays
+		if (n % 2 == 0) {
+			left = new int[n / 2];
+			right = new int[n / 2];
+		} else {
+			left = new int[n / 2];
+			right = new int[n / 2 + 1];
+		}
+
+		// fill up left and right arrays
+		for (int i = 0; i < n; i++) {
+			if (i < n / 2) {
+				left[i] = array[i];
+			} else {
+				right[i - n / 2] = array[i];
+			}
+		}
+		// recursively split and merge
+		left = mergeSort(left);
+		right = mergeSort(right);
+
+		// merge
+		return merge(left, right);
+
+	}
+
+	// method for merging two sorted arrays
+	public static int[] merge(int[] left, int[] right) {
+
+		int[] result = new int[left.length + right.length];
+
+		int i = 0;
+		int j = 0;
+		int index = 0;
+
+		// add until one sub array is deplete
+		while (i < left.length && j < right.length) {
+			if (left[i] < right[j]) {
+				result[index++] = left[i++];
+			} else {
+				result[index++] = right[j++];
+			}
+		}
+
+		// add every leftover element from the sub array
+		// only one of the two while loops will be executed
+		while (i < left.length) {
+			result[index++] = left[i++];
+		}
+
+		while (j < right.length) {
+			result[index++] = right[j++];
+		}
+
+		return result;
+	}
+
+	public static int[] createArray(int n) {
 
 		int[] array = new int[n];
 		for (int i = 0; i < n; i++) {
