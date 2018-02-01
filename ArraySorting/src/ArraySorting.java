@@ -5,24 +5,23 @@ public class ArraySorting {
 	public static void main(String[] args) {
 
 		// Arrays.sort
-		int[] array = { 4, 9, 7, 1, 3, 6, 5 };
+		int[] array = generateArray(8);
 		System.out.println("Unsorted array: " + Arrays.toString(array));
 		Arrays.sort(array);
 		System.out.println("Sorted array: " + Arrays.toString(array));
 
 		// Selection Sort
-		int[] array1 = { 4, 6, 56, 23, 4, 1, 30, 15, 67, 89, 22 };
+		int[] array1 = generateArray(10);
 		System.out.println("Unsorted array: " + Arrays.toString(array1));
 		selectionSort(array1);
 
 		// Linear Search
-		int[] array2 = { 4, 6, 56, 23, 4, 1, 30, 15, 67, 89, 22 };
+		int[] array2 = {4, 6, 56, 23, 4, 1, 30, 15, 67, 89};
 		linearSearch(array2, 23);
 		linearSearch(array2, 20);
 
 		// Bubble Sort
-		
-		int[] array3 = { 4, 6, 56, 23, 4, 1, 30, 15, 67, 89, 22 };
+		int[] array3 = generateArray(10);
 		System.out.println("Unsorted array: " + Arrays.toString(array3));
 		bubbleSort(array3);
 
@@ -78,6 +77,16 @@ public class ArraySorting {
 		} while (swapped == true);
 
 		System.out.println("Array after Bubble Sort: " + Arrays.toString(array));
+	}
+
+	public static int[] generateArray(int n) {
+
+		int[] array = new int[n];
+		for (int i = 0; i < n; i++) {
+			array[i] = (int) (Math.random() * 25);
+		}
+
+		return array;
 	}
 
 }
